@@ -18,24 +18,46 @@ public class MainService : IMainService
 
     public void Invoke()
     {
-        /*
-        DataContext context = new DataContext();
-
-        var movies = context.Movies;
-        foreach (var movie in movies)
-        {
-            Console.WriteLine(movie.Title);
-        }
-
-            */
         var db = new MovieContext();
+        /*
         
 
+        System.Console.WriteLine("Enter NEW User Name: ");
+        var user2 = Console.ReadLine();
 
+        using (db = new MovieContext())
+        {
+            var occupation = new Occupation()
+            {
+                Name = user2
+            };
+            db.Occupations.Add(occupation);
+            db.SaveChanges();
+
+            var newOccupation = db.Users.FirstOrDefault(x => x.Name == user2);
+            System.Console.WriteLine($"({Users.Id}) {newOccupation.Name}");
+        }
+
+        // New occupation
+        System.Console.WriteLine("Enter NEW Occupation Name: ");
+        var occ2 = Console.ReadLine();
+
+        using ( db = new MovieContext())
+        {
+             var occupation = new Occupation() {
+                 Name = occ2
+             };
+             db.Occupations.Add(occupation);
+             db.SaveChanges();
+
+             var newOccupation = db.Occupations.FirstOrDefault(x => x.Name == occ2);
+             System.Console.WriteLine($"({newOccupation.Id}) {newOccupation.Name}");
+         }*/
+        
 
         string choice;
 
-        Console.WriteLine("1) Search Movies");
+        Console.WriteLine("1) Search/view Movies");
         Console.WriteLine("2) Add Movies");
         Console.WriteLine("3) Update Movies");
         Console.WriteLine("4) Delete Movies");
@@ -46,22 +68,7 @@ public class MainService : IMainService
 
         if (choice == "1")
         {
-            /*
-            var combiner = new CombinerService();
-
-            Console.WriteLine("Enter search string: ");
-            var searchString = Console.ReadLine();
-            var results = combiner.SearchAllMedia(searchString);
-
-            results.ForEach(Console.WriteLine);
-           
-            var query = db.Movies.OrderBy(b => b.Title);
-
-            Console.WriteLine("All Movies in database: ");
-            foreach (var item in query)
-            {
-                Console.WriteLine(item.Title);
-            } */
+            
 
 
             //Search Movies in database
@@ -113,7 +120,7 @@ public class MainService : IMainService
             {
                 db.Movies.Add(movie);
                 
-           //     logger.Info("Blog added - {name}", Title);
+           //      logger.Info("Blog added - {name}", Title);
                 db.SaveChanges();
            //     var moviegenre = new MovieGenre { Genre = genreIDinput, Movie = movie  };
             //    db.MovieGenres.Add(moviegenre);
@@ -143,7 +150,7 @@ public class MainService : IMainService
             {
                 db.Movies.UpdateRange(movieU);
                 db.SaveChanges();
-                
+                Console.WriteLine(updatedtitle, " Has replaced the existing title");
             }
 
         }
